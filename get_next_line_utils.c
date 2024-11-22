@@ -6,7 +6,7 @@
 /*   By: lzari <lzari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:55:21 by lzari             #+#    #+#             */
-/*   Updated: 2024/11/21 15:20:15 by lzari            ###   ########.fr       */
+/*   Updated: 2024/11/22 18:23:01 by lzari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ char	*ft_strchr(const char *s, int c)
 	while (s[i])
 	{
 		if (s[i] == c)
-			return (s + i);
+			return ((char *)(s + i));
 		i++;
 	}
-	if (c == '\0')
-		return (s + i);
+	if ((char)c == '\0')
+		return ((char *)(s + i));
 	return (NULL);
 }
 
@@ -69,11 +69,11 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	char	*c;
 
 	i = 0;
+	l = ft_strlen(s);
 	if (!s)
 		return (NULL);
-	if (start > ft_strlen(s))
+	if (start > l)
 		return (ft_strdup(""));
-	l = ft_strlen(s);
 	if (len > l - start)
 		len = l - start;
 	c = malloc(len + 1);
@@ -93,20 +93,28 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*r;
 	int		i;
 	int		j;
-
-	i = 0;
-	j = 0;
-	if (!s1 || s2)
+	if (!s1 && !s2)
 		return (NULL);
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
 	r = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!r)
 		return (NULL);
-	while (s1)
-		r[i++] = s1[j++];
+	i = 0;
+	while (s1[i])
+	{
+		r[i] = s1[i];
+		i++;
+	}
 	j = 0;
-	while (s2)
-		r[i++] = s2[j++];
-	r[i] = '\0';
+	while (s2[j])
+	{
+		r[i + j] = s2[j];
+		j++;
+	}
+	r[i + j] = '\0';
 	free(s1);
 	return (r);
 }

@@ -6,7 +6,7 @@
 /*   By: lzari <lzari@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 13:37:14 by lzari             #+#    #+#             */
-/*   Updated: 2024/11/22 14:39:12 by lzari            ###   ########.fr       */
+/*   Updated: 2024/11/22 18:00:15 by lzari            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1
 # endif
 
 char	*get_next_line(int fd);
@@ -29,7 +29,7 @@ char	*ft_strchr(const char *, int c);
 char	*ft_strdup(const char *s1);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 char	*ft_strjoin(char *s1, char *s2);
-char	read_from_the_file(int fd, char *string);
+char	*read_from_the_file(int fd, char *string);
 char	*get_line(char *string);
 char	*skip_new_line(char *line);
 #endif
